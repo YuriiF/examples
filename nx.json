@@ -10,5 +10,18 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "client": {
+      "tags": []
+    },
+    "client-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "client"
+      ]
+    },
+    "server": {
+      "tags": []
+    }
+  }
 }
