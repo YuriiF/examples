@@ -1,5 +1,5 @@
 {
-  "name": "bsc",
+  "name": "@bsc/monorepo",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
