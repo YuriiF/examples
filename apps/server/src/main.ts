@@ -1,4 +1,5 @@
 import { ApolloServer } from 'apollo-server';
+const isEmail = require('isemail');
 
 /** Custom imports */
 const { createStore } = require('./utils');
@@ -14,7 +15,20 @@ const dataSources = () => ({
   userAPI: new UserAPI({ store }),
 });
 
-const server = new ApolloServer({ typeDefs, resolvers, dataSources });
+const context = async ({ req }) => {
+  /** simple auth check on every request */
+  const auth = (req.headers && req.headers.authorization) || '';
+  const email = Buffer.from(auth, 'base64').toString('ascii');
+  if (!isEmail.validate(email)) return { user: null };
+
+  /** find a user by their email */
+  const users = await store.users.findOrCreate({ where: { email } });
+  const user = (users && users[0]) || null;
+
+  return { user: { ...user.dataValues } };
+};
+
+const server = new ApolloServer({ typeDefs, resolvers, context, dataSources });
 
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
