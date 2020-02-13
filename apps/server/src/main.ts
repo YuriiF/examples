@@ -1,7 +1,20 @@
 import { ApolloServer } from 'apollo-server';
-import typeDefs from './schema/typeDefs';
 
-const server = new ApolloServer({ typeDefs });
+/** Custom imports */
+const { createStore } = require('./utils');
+import LaunchAPI from './datasources/launch';
+import UserAPI from './datasources/user';
+import typeDefs from './schema/typeDefs';
+import resolvers from './schema/resolvers';
+
+const store = createStore();
+
+const dataSources = () => ({
+  launchAPI: new LaunchAPI(),
+  userAPI: new UserAPI({ store }),
+});
+
+const server = new ApolloServer({ typeDefs, resolvers, dataSources });
 
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
