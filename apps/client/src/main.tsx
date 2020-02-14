@@ -1,13 +1,13 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-
-// import { BrowserRouter } from 'react-router-dom';
-
-// import App from './app/App';
-
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
+import { ApolloProvider } from '@apollo/react-hooks';
+
+/** Custom imports */
+import App from './app/App';
+import { GlobalStyles } from '@bsc/client/components';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -19,9 +19,10 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   link,
 });
 
-// ReactDOM.render(
-//   <BrowserRouter>
-//     <App />
-//   </BrowserRouter>,
-//   document.getElementById('root')
-// );
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <GlobalStyles />
+    <App />
+  </ApolloProvider>,
+  document.getElementById('root')
+);
