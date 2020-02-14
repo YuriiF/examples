@@ -47,12 +47,13 @@ const GlobalStyles = () => {
           fontSize: 40,
         },
         h3: {
-          fontSize: 36,
+          fontSize: 24,
+          fontFamily: 'serif',
+          color: 'green',
         },
         h5: {
           fontSize: 16,
           textTransform: 'uppercase',
-          letterSpacing: 4,
         },
       })}
     />
