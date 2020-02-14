@@ -1,28 +1,28 @@
 import React, { Fragment } from 'react';
 import { Route, Link } from 'react-router-dom';
 import styled from '@emotion/styled';
+import { PageContainer } from '../../templates/PageContainer/PageContainer';
+import { Launch } from '../Launch/Launch';
+import { Launches } from '../Launches/Launches';
+import { Cart } from '../Cart/Cart';
+import { Profile } from '../Profile/Profile';
+import { Footer } from '../../sections/Footer/Footer';
 
-export interface HomePageProps {}
-
-const StyledHomePage = styled.div`
-  color: pink;
-`;
+export interface HomePageProps {
+  children?: any;
+}
 
 export const HomePage = (props: HomePageProps) => {
   return (
-    <StyledHomePage>
-      <h1>Welcome to HomePage component!</h1>
-
-      <ul>
-        <li>
-          <Link to="/">HomePage root</Link>
-        </li>
-      </ul>
-      <Route
-        path="/"
-        render={() => <div>This is the HomePage root route.</div>}
-      />
-    </StyledHomePage>
+    <Fragment>
+      <PageContainer>
+        <Route exact path="/" component={Launches} />
+        <Route path="/launch/:launchId" component={Launch} />
+        <Route exact path="/cart" component={Cart} />
+        <Route path="/profile" component={Profile} />
+      </PageContainer>
+      <Footer />
+    </Fragment>
   );
 };
 

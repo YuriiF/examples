@@ -6,8 +6,8 @@ import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 
 /** Custom imports */
-import App from './app/App';
 import { GlobalStyles } from '@bsc/client/components';
+import App from './app/App';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({

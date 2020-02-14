@@ -1,3 +1,4 @@
+export * from './lib/elements/LogoutButton/LogoutButton';
 export * from './lib/sections/Footer/Footer';
 export * from './lib/elements/MenuItem/MenuItem';
 export * from './lib/templates/PageContainer/PageContainer';
