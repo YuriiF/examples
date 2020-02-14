@@ -16,11 +16,12 @@
     },
     "client-e2e": {
       "tags": [],
-      "implicitDependencies": [
-        "client"
-      ]
+      "implicitDependencies": ["client"]
     },
     "server": {
+      "tags": []
+    },
+    "client-components": {
       "tags": []
     }
   }

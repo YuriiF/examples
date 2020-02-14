@@ -15,10 +15,7 @@
             "main": "apps/client/src/main.tsx",
             "polyfills": "apps/client/src/polyfills.ts",
             "tsConfig": "apps/client/tsconfig.app.json",
-            "assets": [
-              "apps/client/src/favicon.ico",
-              "apps/client/src/assets"
-            ],
+            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -69,10 +66,7 @@
               "apps/client/tsconfig.app.json",
               "apps/client/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/client/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/client/**"]
           }
         },
         "test": {
@@ -107,13 +101,8 @@
           "options": {
             "linter": "eslint",
             "config": "apps/client-e2e/.eslintrc",
-            "tsConfig": [
-              "apps/client-e2e/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/client-e2e/**"
-            ]
+            "tsConfig": ["apps/client-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/client-e2e/**"]
           }
         }
       }
@@ -131,9 +120,7 @@
             "outputPath": "dist/apps/server",
             "main": "apps/server/src/main.ts",
             "tsConfig": "apps/server/tsconfig.app.json",
-            "assets": [
-              "apps/server/src/assets"
-            ]
+            "assets": ["apps/server/src/assets"]
           },
           "configurations": {
             "production": {
@@ -164,10 +151,7 @@
               "apps/server/tsconfig.app.json",
               "apps/server/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/server/**"
-            ]
+            "exclude": ["**/node_modules/**", "!apps/server/**"]
           }
         },
         "test": {
@@ -175,6 +159,44 @@
           "options": {
             "jestConfig": "apps/server/jest.config.js",
             "tsConfig": "apps/server/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "client-components": {
+      "root": "libs/client/components",
+      "sourceRoot": "libs/client/components/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/client/components/.eslintrc",
+            "tsConfig": [
+              "libs/client/components/tsconfig.lib.json",
+              "libs/client/components/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/client/components/**"]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/web:package",
+          "options": {
+            "outputPath": "dist/libs/client/components",
+            "tsConfig": "libs/client/components/tsconfig.lib.json",
+            "project": "libs/client/components/package.json",
+            "entryFile": "libs/client/components/src/index.ts",
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/client/components/jest.config.js",
+            "tsConfig": "libs/client/components/tsconfig.spec.json"
           }
         }
       }

@@ -1,0 +1,8 @@
+{
+  "name": "client-components",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  }
+}
