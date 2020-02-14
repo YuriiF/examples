@@ -19,3 +19,6 @@ nx g @nrwl/react:library --directory=client --appProject=client --pascalCaseFile
 
 # Command to generate component inside the library, with automatic export just change the name, directory and project (lib) name
 nx g @nrwl/react:component --project=client-components --directory=HomePage --export=true --pascalCaseFiles=true --routing=true --style=@emotion/styled
+
+# Command to generate component in particular folder/directory
+nx g @nrwl/react:component --project=client-components --directory=pages/Cart --export=true --pascalCaseFiles=true --routing=false --style=@emotion/styled
