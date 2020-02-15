@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from '@emotion/styled';
 import { Spinner } from 'evergreen-ui';
 import { colors } from '../../themes/GlobalStyles/Global';
