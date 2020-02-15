@@ -1,20 +1,34 @@
 import React from 'react';
+import { useApolloClient, useMutation } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import { Loading } from '../../elements/Loading/Loading';
+import { LoginForm } from '../../sections/LoginForm/LoginForm';
 
-import styled from '@emotion/styled';
-
-/* eslint-disable-next-line */
 export interface LoginProps {}
 
-const StyledLogin = styled.div`
-  color: pink;
+export const LOGIN_USER = gql`
+  mutation login($email: String!) {
+    login(email: $email)
+  }
 `;
 
 export const Login = (props: LoginProps) => {
-  return (
-    <StyledLogin>
-      <h1>Welcome to Login component!</h1>
-    </StyledLogin>
-  );
+  const onCompleted = ({ login }) => {
+    localStorage.setItem('token', login);
+    client.writeData({ data: { isLoggedIn: true } });
+  };
+
+  const client = useApolloClient();
+  const [login, { loading, error }] = useMutation(LOGIN_USER, { onCompleted });
+
+  if (loading) {
+  }
+
+  if (error) {
+    return <p>An error occurred</p>;
+  }
+
+  return <LoginForm login={login} />;
 };
 
 export default Login;
