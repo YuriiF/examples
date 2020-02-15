@@ -81,8 +81,8 @@ export const Launches = (props: LaunchesProps) => {
     };
   };
 
-  const handleLoadMore = () => {
-    fetchMore({
+  const handleLoadMore = async () => {
+    await fetchMore({
       variables: {
         after: data.pagedLaunches.cursor,
       },
@@ -103,6 +103,7 @@ export const Launches = (props: LaunchesProps) => {
           onClick={handleLoadMore}
           appearance="primary"
           margin="auto"
+          isLoading={loading}
         >
           Load More
         </LoadMoreButton>
