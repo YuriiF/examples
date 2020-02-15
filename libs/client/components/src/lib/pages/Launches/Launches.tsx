@@ -57,6 +57,13 @@ export const Launches = (props: LaunchesProps) => {
 
   console.log(data);
 
+  /**
+   * Updates the results/query if there is more items to fetch.
+   * TODO: Handle return object with 'ramda' not by spread operators
+   *
+   * @param prev previos results
+   * @param Object
+   */
   const updateQuery = (prev, { fetchMoreResult, ...rest }) => {
     if (!fetchMoreResult) return prev;
     return {
@@ -97,6 +104,7 @@ export const Launches = (props: LaunchesProps) => {
           Load More
         </LoadMoreButton>
       )}
+      <div>test</div>
     </Fragment>
   );
 };
