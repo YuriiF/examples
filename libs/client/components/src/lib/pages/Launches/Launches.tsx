@@ -3,10 +3,8 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 import { Spinner } from 'evergreen-ui';
 import path from 'ramda/src/path';
-import { Route, Link } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { size } from 'polished';
-import { Button } from 'evergreen-ui';
 
 import { colors } from '../../themes/GlobalStyles/Global';
 import { LaunchTile } from '../../blocks/LaunchTile/LaunchTile';
@@ -58,16 +56,47 @@ export const Launches = (props: LaunchesProps) => {
   }
 
   console.log(data);
+
+  const updateQuery = (prev, { fetchMoreResult, ...rest }) => {
+    if (!fetchMoreResult) return prev;
+    return {
+      ...fetchMoreResult,
+      pagedLaunches: {
+        ...fetchMoreResult.pagedLaunches,
+        launches: [
+          ...prev.pagedLaunches.launches,
+          ...fetchMoreResult.pagedLaunches.launches,
+        ],
+      },
+    };
+  };
+
+  const handleLoadMore = () => {
+    fetchMore({
+      variables: {
+        after: data.pagedLaunches.cursor,
+      },
+      updateQuery,
+    });
+  };
+
   const launches: any = path(['pagedLaunches', 'launches'], data);
+  const hasMore: any = path(['pagedLaunches', 'hasMore'], data);
 
   return (
     <Fragment>
       {launches.map((launch) => (
         <LaunchTile key={launch.id} launch={launch} />
       ))}
-      <LoadMoreButton appearance="primary" margin="auto">
-        Hi Evergreen!
-      </LoadMoreButton>
+      {hasMore && (
+        <LoadMoreButton
+          onClick={handleLoadMore}
+          appearance="primary"
+          margin="auto"
+        >
+          Load More
+        </LoadMoreButton>
+      )}
     </Fragment>
   );
 };
