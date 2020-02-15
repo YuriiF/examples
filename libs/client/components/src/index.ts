@@ -1,3 +1,4 @@
+export * from './lib/sections/LoginForm/LoginForm';
 export * from './lib/blocks/ActionButton/ActionButton';
 export * from './lib/blocks/LaunchDetail/LaunchDetail';
 export * from './lib/sections/Header/Header';
