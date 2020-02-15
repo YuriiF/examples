@@ -12,7 +12,7 @@ class LaunchAPI extends RESTDataSource {
     const result = {
       id: pathOr(0, ['flight_number'], launch),
       cursor: `${path(['launch_date_unix'], launch)}`,
-      site: path(['launch_site', 'site_name', launch]),
+      site: path(['launch_site', 'site_name'], launch),
       mission: {
         name: path(['mission_name'], launch),
         missionPatchSmall: path(['links', 'mission_patch_small'], launch),
