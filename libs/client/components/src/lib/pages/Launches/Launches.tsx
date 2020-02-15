@@ -8,25 +8,32 @@ import { Loading } from '../../elements/Loading/Loading';
 import { LaunchTile } from '../../blocks/LaunchTile/LaunchTile';
 import { LoadMoreButton } from '../../elements/LoadMoreButton/LoadMoreButton';
 
+export const LAUNCH_TILE_DATA = gql`
+  fragment LaunchTile on Launch {
+    id
+    isBooked
+    rocket {
+      id
+      name
+    }
+    mission {
+      name
+      missionPatch
+    }
+  }
+`;
+
 const GET_LAUNCHES = gql`
   query launchList($after: String) {
     pagedLaunches(after: $after) {
       cursor
       hasMore
       launches {
-        id
-        isBooked
-        rocket {
-          id
-          name
-        }
-        mission {
-          name
-          missionPatch
-        }
+        ...LaunchTile
       }
     }
   }
+  ${LAUNCH_TILE_DATA}
 `;
 
 export interface LaunchesProps {}

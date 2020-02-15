@@ -8,24 +8,19 @@ import { Loading } from '../../elements/Loading/Loading';
 import { Header } from '../../sections/Header/Header';
 import { LaunchDetail } from '../../blocks/LaunchDetail/LaunchDetail';
 import { ActionButton } from '../../blocks/ActionButton/ActionButton';
+import { LAUNCH_TILE_DATA } from '../Launches/Launches';
 
 export const GET_LAUNCH_DETAILS = gql`
   query LaunchDetails($launchId: ID!) {
     launch(id: $launchId) {
-      id
       site
-      isBooked
       rocket {
-        id
-        name
         type
       }
-      mission {
-        name
-        missionPatch
-      }
+      ...LaunchTile
     }
   }
+  ${LAUNCH_TILE_DATA}
 `;
 
 export interface LaunchProps {
@@ -42,14 +37,14 @@ export const Launch = (props: LaunchProps) => {
   if (loading) return <Loading />;
   if (error) return <p>ERROR: {error.message}</p>;
   if (!data) return <p>Not found</p>;
-
+  const launch = path(['launch'], data);
   return (
     <Fragment>
       <Header image={path(['launch', 'mission', 'missionPatch'], data)}>
         {path(['launch', 'mission', 'name'], data)}
       </Header>
-      <LaunchDetail {...data.launch} />
-      <ActionButton {...data.launch} getLaunchDetails={GET_LAUNCH_DETAILS} />
+      <LaunchDetail {...launch} />
+      <ActionButton {...launch} getLaunchDetails={GET_LAUNCH_DETAILS} />
     </Fragment>
   );
 };
