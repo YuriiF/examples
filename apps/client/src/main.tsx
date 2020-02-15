@@ -11,12 +11,20 @@ import App from './app/App';
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
+  headers: { authorization: localStorage.getItem('token') },
   uri: 'http://localhost:4000/',
 });
 
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
   link,
+});
+
+cache.writeData({
+  data: {
+    isLoggedIn: !!localStorage.getItem('token'),
+    cartItems: [],
+  },
 });
 
 ReactDOM.render(
