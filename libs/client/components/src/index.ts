@@ -1,3 +1,6 @@
+export * from './lib/blocks/ActionButton/ActionButton';
+export * from './lib/blocks/LaunchDetail/LaunchDetail';
+export * from './lib/sections/Header/Header';
 export * from './lib/elements/Loading/Loading';
 export * from './lib/elements/LoadMoreButton/LoadMoreButton';
 export * from './lib/blocks/LaunchTile/LaunchTile';
