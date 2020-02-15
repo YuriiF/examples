@@ -1,21 +1,12 @@
 import React, { Fragment } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import { Spinner } from 'evergreen-ui';
 import path from 'ramda/src/path';
-import styled from '@emotion/styled';
-import { size } from 'polished';
 
-import { colors } from '../../themes/GlobalStyles/Global';
+/** Custom imports */
+import { Loading } from '../../elements/Loading/Loading';
 import { LaunchTile } from '../../blocks/LaunchTile/LaunchTile';
 import { LoadMoreButton } from '../../elements/LoadMoreButton/LoadMoreButton';
-
-/** TODO: add Loading indicator into separate component */
-const Loading = styled(Spinner)(size(48), {
-  display: 'block',
-  margin: 'auto',
-  fill: colors.grey,
-});
 
 const GET_LAUNCHES = gql`
   query launchList($after: String) {
@@ -61,7 +52,12 @@ export const Launches = (props: LaunchesProps) => {
    * Updates the results/query if there is more items to fetch.
    * TODO: Handle return object with 'ramda' not by spread operators
    *
-   * @param prev previos results
+   * updateQuery function tell Apollo how to update
+   * the list of launches in the cache.
+   * To do this, we take the previous query result and
+   * combine it with the new query result from fetchMore
+   *
+   * @param prev previous results
    * @param Object
    */
   const updateQuery = (prev, { fetchMoreResult, ...rest }) => {
@@ -104,7 +100,6 @@ export const Launches = (props: LaunchesProps) => {
           Load More
         </LoadMoreButton>
       )}
-      <div>test</div>
     </Fragment>
   );
 };

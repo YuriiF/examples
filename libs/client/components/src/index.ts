@@ -1,3 +1,4 @@
+export * from './lib/elements/Loading/Loading';
 export * from './lib/elements/LoadMoreButton/LoadMoreButton';
 export * from './lib/blocks/LaunchTile/LaunchTile';
 export * from './lib/elements/LogoutButton/LogoutButton';
