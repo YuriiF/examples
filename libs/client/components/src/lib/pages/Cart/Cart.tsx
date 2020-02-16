@@ -1,10 +1,45 @@
-import React from 'react';
-import styled from '@emotion/styled';
+import React, { Fragment } from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+import { Loading } from '../../elements/Loading/Loading';
+import { Header } from '../../sections/Header/Header';
+import { BookTrips } from '../../containers/BookTrips/BookTrips';
+import { CartItem } from '../../containers/CartItem/CartItem';
 
-export interface CartProps {}
+export const GET_CART_ITEMS = gql`
+  query GetCartItems {
+    cartItems @client
+  }
+`;
 
-export const Cart = (props: CartProps) => {
-  return <div />;
+export const Cart = () => {
+  const { data, loading, error } = useQuery(GET_CART_ITEMS);
+
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <p>ERROR: {error.message}</p>;
+  }
+
+  return (
+    <Fragment>
+      <Header>My Cart</Header>
+      {!data || (!!data && data.cartItems.length === 0) ? (
+        <p data-testid="empty-message">No items in your cart</p>
+      ) : (
+        <Fragment>
+          {!!data &&
+            data.cartItems.map((launchId) => (
+              <CartItem key={launchId} launchId={launchId} />
+            ))}
+
+          <BookTrips cartItems={!!data ? data.cartItems : []} />
+        </Fragment>
+      )}
+    </Fragment>
+  );
 };
 
 export default Cart;
