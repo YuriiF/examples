@@ -1,5 +1,6 @@
 # command to generate react application with routing, emotion, and pascal case files
-nx g @nrwl/react:application --routing=true --pascalCaseFiles=true --style=@emotion/styled
+# NOTE: remove --dry-run flag to actually crate a files
+nx g @nrwl/react:application --routing=true --pascalCaseFiles=true --style=@emotion/styled --dry-run
 
 # command to generate node application with defined frontend project
 # that needs access this node app
