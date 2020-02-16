@@ -52,7 +52,7 @@ export const Header = ({ image, children = 'Space Explorer' }: HeaderProps) => {
       <Image round={!image} src={avatar} alt="Space dog" />
       <div>
         <h2>{children}</h2>
-        <Subheading>{email}em</Subheading>
+        <Subheading>{email}</Subheading>
       </div>
     </Container>
   );
