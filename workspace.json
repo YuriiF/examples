@@ -200,6 +200,206 @@
           }
         }
       }
+    },
+    "notes": {
+      "root": "apps/notes",
+      "sourceRoot": "apps/notes/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/notes",
+            "index": "apps/notes/src/index.html",
+            "main": "apps/notes/src/main.tsx",
+            "polyfills": "apps/notes/src/polyfills.ts",
+            "tsConfig": "apps/notes/tsconfig.app.json",
+            "assets": ["apps/notes/src/favicon.ico", "apps/notes/src/assets"],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/notes/src/environments/environment.ts",
+                  "with": "apps/notes/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "notes:build",
+            "proxyConfig": "apps/notes/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "notes:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/notes/.eslintrc",
+            "tsConfig": [
+              "apps/notes/tsconfig.app.json",
+              "apps/notes/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/notes/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/notes/jest.config.js",
+            "tsConfig": "apps/notes/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "notes-e2e": {
+      "root": "apps/notes-e2e",
+      "sourceRoot": "apps/notes-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/notes-e2e/cypress.json",
+            "tsConfig": "apps/notes-e2e/tsconfig.e2e.json",
+            "devServerTarget": "notes:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "notes:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/notes-e2e/.eslintrc",
+            "tsConfig": ["apps/notes-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/notes-e2e/**"]
+          }
+        }
+      }
+    },
+    "notes-api": {
+      "root": "apps/notes-api",
+      "sourceRoot": "apps/notes-api/src",
+      "projectType": "application",
+      "prefix": "notes-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/notes-api",
+            "main": "apps/notes-api/src/main.ts",
+            "tsConfig": "apps/notes-api/tsconfig.app.json",
+            "assets": ["apps/notes-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/notes-api/src/environments/environment.ts",
+                  "with": "apps/notes-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "notes-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/notes-api/.eslintrc",
+            "tsConfig": [
+              "apps/notes-api/tsconfig.app.json",
+              "apps/notes-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/notes-api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/notes-api/jest.config.js",
+            "tsConfig": "apps/notes-api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "notes-components": {
+      "root": "libs/notes/components",
+      "sourceRoot": "libs/notes/components/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "libs/notes/components/.eslintrc",
+            "tsConfig": [
+              "libs/notes/components/tsconfig.lib.json",
+              "libs/notes/components/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/notes/components/**"]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/web:package",
+          "options": {
+            "outputPath": "dist/libs/notes/components",
+            "tsConfig": "libs/notes/components/tsconfig.lib.json",
+            "project": "libs/notes/components/package.json",
+            "entryFile": "libs/notes/components/src/index.ts",
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/notes/components/jest.config.js",
+            "tsConfig": "libs/notes/components/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

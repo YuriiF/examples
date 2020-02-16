@@ -23,6 +23,19 @@
     },
     "client-components": {
       "tags": []
+    },
+    "notes": {
+      "tags": []
+    },
+    "notes-e2e": {
+      "tags": [],
+      "implicitDependencies": ["notes"]
+    },
+    "notes-api": {
+      "tags": []
+    },
+    "notes-components": {
+      "tags": []
     }
   }
 }

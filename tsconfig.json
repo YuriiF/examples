@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@bsc/client/components": ["libs/client/components/src/index.ts"]
+      "@bsc/client/components": ["libs/client/components/src/index.ts"],
+      "@bsc/notes/components": ["libs/notes/components/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp", "dist"]

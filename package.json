@@ -24,13 +24,15 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "codegen": "yarn apollo client:codegen --config ./apps/client/apollo.config.js --target typescript --watch"
+    "codegen": "yarn apollo client:codegen --config ./apps/client/apollo.config.js --target typescript --watch",
+    "start:notes": "nx serve notes-api & nx serve notes"
   },
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
     "@emotion/core": "10.0.27",
     "@emotion/styled": "10.0.27",
+    "@feathersjs/feathers": "^4.5.1",
     "@reach/router": "^1.3.1",
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-client": "^2.6.8",
