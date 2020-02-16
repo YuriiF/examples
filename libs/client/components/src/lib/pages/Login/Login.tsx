@@ -22,6 +22,7 @@ export const Login = (props: LoginProps) => {
   const [login, { loading, error }] = useMutation(LOGIN_USER, { onCompleted });
 
   if (loading) {
+    return <Loading />
   }
 
   if (error) {

@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { Route, Link } from 'react-router-dom';
-import styled from '@emotion/styled';
 import { PageContainer } from '../../templates/PageContainer/PageContainer';
 import { Launch } from '../Launch/Launch';
 import { Launches } from '../Launches/Launches';

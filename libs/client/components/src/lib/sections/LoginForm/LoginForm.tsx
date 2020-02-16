@@ -15,6 +15,7 @@ export const LoginForm = (props: LoginFormProps) => {
         // onChange={(e) => setState({ value: e.target.value })}
         onChange={(e) => console.log(e.target.value)}
         // value={state.value}
+        label={'Valid email address'}
       />
       <Button marginRight={16}>Login</Button>
     </Pane>
