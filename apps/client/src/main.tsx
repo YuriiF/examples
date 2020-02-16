@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom';
 import { ApolloClient } from 'apollo-client';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { ApolloProvider, useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 /** Custom imports */
-import { GlobalStyles } from '@bsc/client/components';
+import { GlobalStyles, Login, PageContainer } from '@bsc/client/components';
+import { typeDefs, resolvers } from './schema/resolvers';
 import App from './app/App';
 
 const cache = new InMemoryCache();
+
 const link = new HttpLink({
   headers: { authorization: localStorage.getItem('token') },
   uri: 'http://localhost:4000/',
@@ -18,6 +21,8 @@ const link = new HttpLink({
 const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   cache,
   link,
+  typeDefs,
+  resolvers,
 });
 
 cache.writeData({
@@ -27,10 +32,27 @@ cache.writeData({
   },
 });
 
+const IS_LOGGED_IN = gql`
+  query IsUserLoggedIn {
+    isLoggedIn @client
+  }
+`;
+
+const IsLoggedIn = () => {
+  const { data } = useQuery(IS_LOGGED_IN);
+  return data.isLoggedIn ? (
+    <App />
+  ) : (
+    <PageContainer>
+      <Login />
+    </PageContainer>
+  );
+};
+
 ReactDOM.render(
   <ApolloProvider client={client}>
     <GlobalStyles />
-    <App />
+    <IsLoggedIn />
   </ApolloProvider>,
   document.getElementById('root')
 );
