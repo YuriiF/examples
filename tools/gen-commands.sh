@@ -4,19 +4,19 @@ nx g @nrwl/react:application --routing=true --pascalCaseFiles=true --style=@emot
 
 # command to generate node application with defined frontend project
 # that needs access this node app
-nx g @nrwl/node:application --frontendProject=client
+nx g @nrwl/node:application --frontendProject=client --dry-run
 
 # npm module 'apollo' have to be installed 'yarn add apollo --dev'
 # Command to push schema - Apollo Manager
-y apollo service:push --endpoint=http://localhost:4000/ --config=./apps/server/apollo.config.js
+yarn apollo service:push --endpoint=http://localhost:4000/ --config=./apps/server/apollo.config.js
 
 # Command to check schema - Apollo Manager
-y apollo service:check --endpoint=http://localhost:4000/ --config=./apps/server/apollo.config.js
+yarn apollo service:check --endpoint=http://localhost:4000/ --config=./apps/server/apollo.config.js
 
 # Command to generate components library with routing, for my application e.g. client, notes
 # to customize the name just change the name parameter to the name of your new lib e.g.
 # --name=components change to --name=types, also change the directory, and --appProject as disired
-nx g @nrwl/react:library --directory=client --appProject=client --pascalCaseFiles=true --routing=true --style=@emotion/styled --publishable=true --name=name-of-the-lib
+nx g @nrwl/react:library --directory=client --appProject=client --pascalCaseFiles=true --routing=true --style=@emotion/styled --publishable=true --name=name-of-the-lib --dry-run
 
 # Command to generate component inside the library, with automatic export just change the name, directory and project (lib) name
 nx g @nrwl/react:component --project=client-components --directory=HomePage --export=true --pascalCaseFiles=true --routing=true --style=@emotion/styled
