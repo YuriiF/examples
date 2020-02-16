@@ -1,3 +1,4 @@
+export * from './lib/containers/CartItem/CartItem';
 export * from './lib/sections/LoginForm/LoginForm';
 export * from './lib/blocks/ActionButton/ActionButton';
 export * from './lib/blocks/LaunchDetail/LaunchDetail';
@@ -15,5 +16,5 @@ export * from './lib/pages/Login/Login';
 export * from './lib/pages/Launches/Launches';
 export * from './lib/pages/Launch/Launch';
 export * from './lib/pages/HomePage/HomePage';
-export * from './lib/client-components';
 export * from './lib/themes/GlobalStyles/Global';
+export * from './lib/containers/BookTrips/BookTrips';

@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import ClientComponents from './client-components';
+import BookTrips from './BookTrips';
 
-describe(' ClientComponents', () => {
+describe(' BookTrips', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ClientComponents />);
+    const { baseElement } = render(<BookTrips />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -49,10 +49,15 @@ const IsLoggedIn = () => {
   );
 };
 
-ReactDOM.render(
+/** Get a root element from our index.html */
+const root = document.getElementById('root');
+
+/** Render our Application */
+const renderApp = () => (
   <ApolloProvider client={client}>
     <GlobalStyles />
     <IsLoggedIn />
-  </ApolloProvider>,
-  document.getElementById('root')
+  </ApolloProvider>
 );
+
+ReactDOM.render(renderApp(), root);
