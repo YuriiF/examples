@@ -1345,6 +1345,11 @@
     long-timeout "^0.1.1"
     uuid "^3.4.0"
 
+"@feathersjs/client@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@feathersjs/client/-/client-4.5.1.tgz#79d5e629b92b0e3dc5f7d6e23e2c5483ff2ece9c"
+  integrity sha512-tkvU7QAhF7LK4q//LkE0Wmp7wyKr4xvsIIqcqRS+2CW4+wjaMRHVRatAS47Cm8xOngji8tX9LV3WxeQJu7NFfw==
+
 "@feathersjs/commons@^4.3.0", "@feathersjs/commons@^4.5.1":
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-4.5.1.tgz#cd18cd9c49f9b06994c285629d97bc0dc271b32a"
@@ -13168,7 +13173,7 @@ socket.io-adapter@~1.1.0:
   resolved "https://registry.yarnpkg.com/socket.io-adapter/-/socket.io-adapter-1.1.2.tgz#ab3f0d6f66b8fc7fca3959ab5991f82221789be9"
   integrity sha512-WzZRUj1kUjrTIrUKpZLEzFZ1OLj5FwLlAFQs9kuZJzJi5DKdU7FsWc36SNmA8iDOtwBQyT8FkrriRM8vXLYz8g==
 
-socket.io-client@2.3.0:
+socket.io-client@2.3.0, socket.io-client@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/socket.io-client/-/socket.io-client-2.3.0.tgz#14d5ba2e00b9bcd145ae443ab96b3f86cbcc1bb4"
   integrity sha512-cEQQf24gET3rfhxZ2jJ5xzAOo/xhZwK+mOqtGRg5IowZsMgwvHwnf/mCRapAAkadhM26y+iydgwsXGObBB5ZdA==
