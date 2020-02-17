@@ -3,7 +3,8 @@
 Repository is build as monorepo generated with [Nx](https://nx.dev)
 
 **Nx is a set of Extensible Dev Tools for Monorepos.**
-**!Not production ready**
+
+**!Examples in this repository are not production ready**
 
 There is more than one project. Right now you can found two projects.
   * Apollo Fullstack Tutorial, but with few changes. `ramda` is used to handle data, and
