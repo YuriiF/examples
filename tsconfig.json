@@ -17,8 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "@bsc/client/components": ["libs/client/components/src/index.ts"],
-      "@bsc/notes/components": ["libs/notes/components/src/index.ts"]
+      "@bsc/notes/components": ["libs/notes/components/src/index.ts"],
+      // alias for oru notes application to not use long paths
+      "@bsc/notes/app": ["apps/notes/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp", "dist"]
+  "exclude": ["node_modules", "tmp", "dist", "node_modules/react-hot-loader"]
 }
