@@ -38,7 +38,7 @@ every file is in TypeScript.
   npm install
 ```
 
-### Run notes-api **feathersjs** application
+#### Run notes-api **feathersjs** application
 4. Open terminal and run bellow command for notes-api server
 
 ```sh
@@ -49,7 +49,7 @@ every file is in TypeScript.
   npm run start notes-api
 ```
 
-### Run notes React clien application
+#### Run notes React clien application
 5. Open another terminal and run bellow command for the client
 
 ```sh
@@ -84,7 +84,7 @@ every file is in TypeScript.
   npm install
 ```
 
-### Run Apollo server application
+#### Run Apollo server application
 4. Open terminal and run bellow command for Apollo server
 
 ```sh
@@ -95,7 +95,7 @@ every file is in TypeScript.
   npm run start server
 ```
 
-### Run Apollo React client application
+#### Run Apollo React client application
 5. Open another terminal and run bellow command for the client
 
 ```sh
