@@ -17,10 +17,10 @@ export default (options = {}): Hook => {
     const user = context.params.user;
 
     /**
-     * The actual message text.
-     * Messages can't be longer than 400 characters.
+     * The actual note text.
+     * Note can't be longer than 800 characters.
      */
-    const text = data.text.substring(0, 400);
+    const text = data.text.substring(0, 800);
 
     /** Override the original data (so that people can't submit additional stuff) */
     context.data = {
