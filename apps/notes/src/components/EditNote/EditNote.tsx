@@ -3,6 +3,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks';
 import { notify } from 'react-notify-toast';
 import { Button, Pane, Textarea, Label } from 'evergreen-ui';
 import gql from 'graphql-tag';
+import path from 'ramda/src/path';
 
 const NOTE_QUERY = gql`
   query getNote($_id: ID!) {
@@ -38,7 +39,7 @@ export const EditNote = ({ match }) => {
   if (error) return <div>Error fetching note</div>;
 
   // set the  result gotten from rhe GraphQL server into the note variable.
-  const note = data;
+  const note:any = path(['note'], data);
 
   return (
     <div className="container m-t-20">
@@ -55,8 +56,8 @@ export const EditNote = ({ match }) => {
             // pass the id, title and content as variables to the UPDATE_NOTE mutation.
             updateNote({
               variables: {
-                _id: note.note._id,
-                text: text ? text : note.note.text,
+                _id: note._id,
+                text: text ? text : note.text,
               },
             });
 
@@ -70,7 +71,7 @@ export const EditNote = ({ match }) => {
                 type="text"
                 name="text"
                 placeholder="Note text"
-                defaultValue={note.note.text}
+                defaultValue={note.text}
                 onChange={(e) => setTitle(e.target.value)}
                 required
                 hidden
@@ -90,9 +91,9 @@ export const EditNote = ({ match }) => {
               <Textarea
                 id="textarea-note"
                 name="content"
-                defaultValue={note.note.text}
+                defaultValue={note.text}
                 onChange={(e) => setContent(e.target.value)}
-                placeholder="Note Content here..."
+                placeholder="Note text ..."
                 required
               />
             </Pane>

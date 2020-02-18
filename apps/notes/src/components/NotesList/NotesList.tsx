@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
+import { Spinner, Pane, Text, Heading, Button } from 'evergreen-ui';
 import { notify } from 'react-notify-toast';
 
 const GET_NOTES = gql`
@@ -22,7 +23,7 @@ const DELETE_NOTE_QUERY = gql`
   }
 `;
 
-export const NotesList:any = () => {
+export const NotesList: any = () => {
   const { loading, error, data } = useQuery(GET_NOTES);
   const [deleteNote] = useMutation(DELETE_NOTE_QUERY, {
     update(cache, { data: { deleteNote } }) {
@@ -36,7 +37,7 @@ export const NotesList:any = () => {
     },
   });
 
-  if (loading) return 'Loading...';
+  if (loading) return <Spinner />;
   if (error) return `Error! ${error.message}`;
 
   return (
@@ -45,36 +46,61 @@ export const NotesList:any = () => {
 
       <div className="allnotes-page">
         <div className="columns is-multiline">
-          {data.notes.map((note) => (
-            <div className="column is-one-third" key={note._id}>
-              <div className="card">
-                <header className="card-header">
-                  <p className="card-header-title">{note.text}</p>
-                </header>
-                <div className="card-content">
-                  <div className="content">
-                    {note.content}
-                    <br />
-                  </div>
-                </div>
-                <footer className="card-footer">
-                  <Link to={`notes/${note._id}`} className="card-footer-item">
-                    Edit
-                  </Link>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      // deleteNote({ variables: { _id: note._id } });
-                      notify.show('Note was deleted successfully', 'success');
-                    }}
-                    className="card-footer-item"
+          <Pane clearfix>
+            {data.notes.map((note) => (
+              <div className="column is-one-third" key={note._id}>
+                <Pane
+                  elevation={1}
+                  float="left"
+                  width={200}
+                  height={120}
+                  margin={24}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  flexDirection="column"
+                  background="lightgoldenrodyellow"
+                >
+                  <Text
+                    size={300}
+                    alignSelf="flex-start"
+                    marginX="12px"
+                    marginY="12px"
                   >
-                    Delete
-                  </button>
-                </footer>
+                    {note.text}
+                  </Text>
+                  {/* <Text size={300}>{note.content}</Text> */}
+
+                  <Pane
+                    flex="1 1 auto"
+                    display="flex"
+                    flexDirection="row"
+                    alignItems="flex-end"
+                    paddingBottom="10px"
+                  >
+                    <Button
+                      is={Link}
+                      to={`notes/${note._id}`}
+                      height={20}
+                      marginRight="8px"
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        // deleteNote({ variables: { _id: note._id } });
+                        notify.show('Note was deleted successfully', 'success');
+                      }}
+                      height={20}
+                    >
+                      Delete
+                    </Button>
+                  </Pane>
+                </Pane>
               </div>
-            </div>
-          ))}
+            ))}
+          </Pane>
         </div>
       </div>
     </div>
