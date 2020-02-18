@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { notify } from 'react-notify-toast';
+import { Button, Pane, Textarea, Label } from 'evergreen-ui';
 import gql from 'graphql-tag';
 
 const NOTE_QUERY = gql`
@@ -63,40 +64,44 @@ export const EditNote = ({ match }) => {
           }}
         >
           <div className="field">
-            <label className="label">Note Title</label>
             <div className="control">
               <input
                 className="input"
                 type="text"
                 name="text"
-                placeholder="Note Title"
+                placeholder="Note text"
                 defaultValue={note.note.text}
                 onChange={(e) => setTitle(e.target.value)}
                 required
+                hidden
               />
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">Note Content</label>
-            <div className="control">
-              <textarea
-                className="textarea"
-                rows={10}
+          <Pane
+            display="flex"
+            padding={16}
+            background="tint2"
+            borderRadius={3}
+            border="default"
+          >
+            <Pane flex={1} alignItems="center" display="flex">
+            <Label paddingRight="16px">Note </Label>
+              <Textarea
+                id="textarea-note"
                 name="content"
-                placeholder="Note Content here..."
                 defaultValue={note.note.text}
                 onChange={(e) => setContent(e.target.value)}
+                placeholder="Note Content here..."
                 required
-              ></textarea>
-            </div>
-          </div>
-
-          <div className="field">
-            <div className="control">
-              <button className="button is-link">Submit</button>
-            </div>
-          </div>
+              />
+            </Pane>
+            <Pane>
+              <Button is="a" marginLeft="10px">
+                Submit
+              </Button>
+            </Pane>
+          </Pane>
         </form>
       </div>
     </div>
