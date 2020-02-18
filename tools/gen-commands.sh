@@ -19,7 +19,7 @@ yarn apollo service:check --endpoint=http://localhost:4000/ --config=./apps/serv
 nx g @nrwl/react:library --directory=client --appProject=client --pascalCaseFiles=true --routing=true --style=@emotion/styled --publishable=true --name=name-of-the-lib --dry-run
 
 # Command to generate component inside the library, with automatic export just change the name, directory and project (lib) name
-nx g @nrwl/react:component --project=client-components --directory=HomePage --export=true --pascalCaseFiles=true --routing=true --style=@emotion/styled
+nx g @nrwl/react:component --project=client-components --directory=HomePage --export=true --pascalCaseFiles=true --routing=true --style=@emotion/styled --dry-run
 
 # Command to generate component in particular folder/directory in libs
 nx g @nrwl/react:component --project=client-components --directory=pages/Cart --export=true --pascalCaseFiles=true --routing=false --style=@emotion/styled
