@@ -17,6 +17,9 @@ import {
   NotFoundPage,
   GlobalStyles,
 } from '@bsc/notes/components';
+
+import { NotesList } from '../NotesList/NotesList';
+import { EditNote } from '../EditNote/EditNote';
 // import FeaturePage from 'containers/FeaturePage/Loadable';
 // import Header from 'components/Header';
 // import Footer from 'components/Footer';
@@ -40,7 +43,8 @@ export const App = () => {
       </Helmet>
       {/* <Header /> */}
       <Switch>
-        <Route exact path="/" component={HomePageLoadable} />
+        <Route exact path="/" component={NotesList} />
+        <Route path="/notes/:id" component={EditNote} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       {/* <Footer /> */}
