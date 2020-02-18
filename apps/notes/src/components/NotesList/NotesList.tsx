@@ -2,8 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { Spinner, Pane, Text, Heading, Button } from 'evergreen-ui';
-import { notify } from 'react-notify-toast';
+import {
+  Spinner,
+  Pane,
+  Text,
+  Heading,
+  Button,
+  Popover,
+  Menu,
+  Position,
+} from 'evergreen-ui';
 
 const GET_NOTES = gql`
   query getNotes {
@@ -77,25 +85,46 @@ export const NotesList: any = () => {
                     flexDirection="row"
                     alignItems="flex-end"
                     paddingBottom="10px"
+                    justifyContent="left"
                   >
-                    <Button
-                      is={Link}
-                      to={`notes/${note._id}`}
-                      height={20}
-                      marginRight="8px"
+                    <Popover
+                      position={Position.BOTTOM}
+                      content={
+                        <Menu>
+                          <Menu.Group>
+                            <Menu.Item
+                              icon="edit"
+                              to={`notes/${note._id}`}
+                              is={Link}
+                              textDecoration="none"
+                              height={20}
+                            >
+                              Edit...
+                            </Menu.Item>
+                          </Menu.Group>
+                          <Menu.Divider />
+                          <Menu.Group>
+                            <Menu.Item
+                              icon="trash"
+                              intent="danger"
+                              onSelect={(e) => {
+                                e.preventDefault();
+                                console.log('Delete');
+                                // deleteNote({ variables: { _id: note._id } });
+                                //   notify.show('Note was deleted successfully', 'success');
+                              }}
+                              height={20}
+                            >
+                              Delete...
+                            </Menu.Item>
+                          </Menu.Group>
+                        </Menu>
+                      }
                     >
-                      Edit
-                    </Button>
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        // deleteNote({ variables: { _id: note._id } });
-                        notify.show('Note was deleted successfully', 'success');
-                      }}
-                      height={20}
-                    >
-                      Delete
-                    </Button>
+                    <Button height={20} marginRight={8}>
+                        ...
+                      </Button>
+                    </Popover>
                   </Pane>
                 </Pane>
               </div>
