@@ -16,7 +16,9 @@
     },
     "client-e2e": {
       "tags": [],
-      "implicitDependencies": ["client"]
+      "implicitDependencies": [
+        "client"
+      ]
     },
     "server": {
       "tags": []
@@ -29,12 +31,17 @@
     },
     "notes-e2e": {
       "tags": [],
-      "implicitDependencies": ["notes"]
+      "implicitDependencies": [
+        "notes"
+      ]
     },
     "notes-api": {
       "tags": []
     },
     "notes-components": {
+      "tags": []
+    },
+    "notes-graphql": {
       "tags": []
     }
   }

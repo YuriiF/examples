@@ -18,7 +18,7 @@
     "paths": {
       "@bsc/client/components": ["libs/client/components/src/index.ts"],
       "@bsc/notes/components": ["libs/notes/components/src/index.ts"],
-      // alias for oru notes application to not use long paths
+      /** Alias for our notes application to not use long paths */
       "@bsc/notes/app": ["apps/notes/src/index.ts"]
     }
   },

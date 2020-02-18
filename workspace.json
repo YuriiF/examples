@@ -15,7 +15,10 @@
             "main": "apps/client/src/main.tsx",
             "polyfills": "apps/client/src/polyfills.ts",
             "tsConfig": "apps/client/tsconfig.app.json",
-            "assets": ["apps/client/src/favicon.ico", "apps/client/src/assets"],
+            "assets": [
+              "apps/client/src/favicon.ico",
+              "apps/client/src/assets"
+            ],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -66,7 +69,10 @@
               "apps/client/tsconfig.app.json",
               "apps/client/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/client/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/client/**"
+            ]
           }
         },
         "test": {
@@ -101,8 +107,13 @@
           "options": {
             "linter": "eslint",
             "config": "apps/client-e2e/.eslintrc",
-            "tsConfig": ["apps/client-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/client-e2e/**"]
+            "tsConfig": [
+              "apps/client-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/client-e2e/**"
+            ]
           }
         }
       }
@@ -120,7 +131,9 @@
             "outputPath": "dist/apps/server",
             "main": "apps/server/src/main.ts",
             "tsConfig": "apps/server/tsconfig.app.json",
-            "assets": ["apps/server/src/assets"]
+            "assets": [
+              "apps/server/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -151,7 +164,10 @@
               "apps/server/tsconfig.app.json",
               "apps/server/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/server/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/server/**"
+            ]
           }
         },
         "test": {
@@ -178,7 +194,10 @@
               "libs/client/components/tsconfig.lib.json",
               "libs/client/components/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/client/components/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/client/components/**"
+            ]
           }
         },
         "build": {
@@ -215,7 +234,10 @@
             "main": "apps/notes/src/main.tsx",
             "polyfills": "apps/notes/src/polyfills.ts",
             "tsConfig": "apps/notes/tsconfig.app.json",
-            "assets": ["apps/notes/src/favicon.ico", "apps/notes/src/assets"],
+            "assets": [
+              "apps/notes/src/favicon.ico",
+              "apps/notes/src/assets"
+            ],
             "styles": [],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -266,7 +288,10 @@
               "apps/notes/tsconfig.app.json",
               "apps/notes/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/notes/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/notes/**"
+            ]
           }
         },
         "test": {
@@ -301,8 +326,13 @@
           "options": {
             "linter": "eslint",
             "config": "apps/notes-e2e/.eslintrc",
-            "tsConfig": ["apps/notes-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/notes-e2e/**"]
+            "tsConfig": [
+              "apps/notes-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/notes-e2e/**"
+            ]
           }
         }
       }
@@ -320,7 +350,9 @@
             "outputPath": "dist/apps/notes-api",
             "main": "apps/notes-api/src/main.ts",
             "tsConfig": "apps/notes-api/tsconfig.app.json",
-            "assets": ["apps/notes-api/src/assets"]
+            "assets": [
+              "apps/notes-api/src/assets"
+            ]
           },
           "configurations": {
             "production": {
@@ -351,7 +383,10 @@
               "apps/notes-api/tsconfig.app.json",
               "apps/notes-api/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/notes-api/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/notes-api/**"
+            ]
           }
         },
         "test": {
@@ -378,7 +413,10 @@
               "libs/notes/components/tsconfig.lib.json",
               "libs/notes/components/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/notes/components/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/notes/components/**"
+            ]
           }
         },
         "build": {
@@ -397,6 +435,67 @@
           "options": {
             "jestConfig": "libs/notes/components/jest.config.js",
             "tsConfig": "libs/notes/components/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "notes-graphql": {
+      "root": "apps/notes-graphql",
+      "sourceRoot": "apps/notes-graphql/src",
+      "projectType": "application",
+      "prefix": "notes-graphql",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/notes-graphql",
+            "main": "apps/notes-graphql/src/main.ts",
+            "tsConfig": "apps/notes-graphql/tsconfig.app.json",
+            "assets": [
+              "apps/notes-graphql/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/notes-graphql/src/environments/environment.ts",
+                  "with": "apps/notes-graphql/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "notes-graphql:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/notes-graphql/.eslintrc",
+            "tsConfig": [
+              "apps/notes-graphql/tsconfig.app.json",
+              "apps/notes-graphql/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/notes-graphql/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/notes-graphql/jest.config.js",
+            "tsConfig": "apps/notes-graphql/tsconfig.spec.json"
           }
         }
       }
