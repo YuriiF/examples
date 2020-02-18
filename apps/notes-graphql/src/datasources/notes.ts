@@ -25,7 +25,7 @@ export class NoteAPI extends RESTDataSource {
    */
   async getNoteById({ noteId }) {
     const response = await this.get('notes', { _id: noteId });
-    return response;
+    return response.data[0];
     // return this.noteReducer(response[0]);
   }
 
