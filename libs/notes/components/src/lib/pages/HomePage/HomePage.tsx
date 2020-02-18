@@ -12,7 +12,7 @@ export const HomePage = ({ children }: HomePageProps) => {
   return (
     <Wrapper>
       <Heading is="h1" size={800} color="pink" textAlign="center">
-        Welcome to HomePage component!
+        Welcome to Notes HomePage!
       </Heading>
       {children}
     </Wrapper>
