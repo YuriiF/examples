@@ -49,7 +49,7 @@ const typeDefs = gql`
     ): NoteConnection!
 
     notes: [Note]
-    note(id: ID!): Note
+    note(_id: ID!): Note
     me: User
   }
 

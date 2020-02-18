@@ -36,8 +36,8 @@ const resolvers = {
       return dataSources.noteAPI.getAllNotes();
     },
 
-    note: (_: any, { id }: any, { dataSources }: any) => {
-      return dataSources.noteAPI.getNoteById({ noteId: id });
+    note: (_: any, { _id }: any, { dataSources }: any) => {
+      return dataSources.noteAPI.getNoteById({ noteId: _id });
     },
 
     me: (_: any, __: any, { dataSources }: any) => {
