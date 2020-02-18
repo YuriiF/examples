@@ -25,7 +25,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "codegen": "yarn apollo client:codegen --config ./apps/client/apollo.config.js --target typescript --watch",
-    "start:notes-api": "NODE_CONFIG_DIR=./apps/notes-api/config nx serve notes-api"
+    "start:notes-api": "NODE_CONFIG_DIR=./apps/notes-api/config nx serve notes-api --port=8888"
   },
   "private": true,
   "dependencies": {
