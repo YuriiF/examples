@@ -33,11 +33,12 @@ const resolvers = {
     },
 
     notes: (_: any, __: any, { dataSources }: any) => {
-      return dataSources.noteAPI.getAllNotes();
+      return dataSources.noteAPI.getAllNotes() || [];
     },
 
-    note: (_: any, { _id }: any, { dataSources }: any) => {
-      return dataSources.noteAPI.getNoteById({ noteId: _id });
+    note: async (_: any, { _id }: any, { dataSources }: any) => {
+      const data = await dataSources.noteAPI.getNoteById({ _id });
+      return data;
     },
 
     me: (_: any, __: any, { dataSources }: any) => {
@@ -51,8 +52,8 @@ const resolvers = {
       return await dataSources.noteAPI.createNote(input);
     },
 
-    async updateNote(root, { _id, input }, { dataSources }: any) {
-      return await dataSources.noteAPI.findOneAndUpdate({ _id }, input, { new: true });
+    async updateNote(root, {_id, text }, { dataSources }: any) {
+      return await dataSources.noteAPI.findOneAndUpdate({ _id, text });
     },
 
     async deleteNote(root, { _id }, { dataSources }: any) {

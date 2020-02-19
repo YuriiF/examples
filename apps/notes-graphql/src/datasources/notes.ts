@@ -19,14 +19,23 @@ export class NoteAPI extends RESTDataSource {
   }
 
   /**
-   * Method takes in a flight number and
+   * Method takes in a _id and
    * returns the data for a particular note.
    * @param noteId
    */
-  async getNoteById({ noteId }) {
-    const response = await this.get('notes', { _id: noteId });
-    return response.data[0];
-    // return this.noteReducer(response[0]);
+  async getNoteById({ _id }) {
+    const response = await this.get(`notes/${_id}`);
+    return response;
+  }
+
+  async findOneAndRemove({ _id }) {
+    const response = await this.delete(`notes/${_id}`);
+    return response;
+  }
+
+  async findOneAndUpdate({ _id, text }) {
+    const response = await this.put(`notes/${_id}`, { text });
+    return response;
   }
 
   /**
@@ -34,7 +43,14 @@ export class NoteAPI extends RESTDataSource {
    * @param noteIds
    */
   getNotesByIds({ noteIds }) {
-    return Promise.all(noteIds.map((noteId) => this.getNoteById({ noteId })));
+    return Promise.all(
+      noteIds.map((noteId) => this.getNoteById({ _id: noteId }))
+    );
+  }
+
+  async createNote({ text }) {
+    const response = await this.post('notes', { text });
+    return response;
   }
 }
 
