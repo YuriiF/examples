@@ -16,7 +16,7 @@ const NOTE_QUERY = gql`
 
 const UPDATE_NOTE = gql`
   mutation updateNote($_id: ID!, $text: String) {
-    updateNote(_id: $_id, input: { text: $text }) {
+    updateNote(_id: $_id, text: $text) {
       _id
       text
     }
@@ -25,22 +25,23 @@ const UPDATE_NOTE = gql`
 
 export const EditNote = ({ match }) => {
   const [text, setTitle] = useState('');
-  const [content, setContent] = useState('');
-
-  const { loading, error, data } = useQuery(NOTE_QUERY, {
+  const {
+    loading,
+    error,
+    data,
+  } = useQuery(NOTE_QUERY, {
     variables: {
-      _id: match.params.id,
+      _id: path(['params', 'id'], match),
     },
   });
 
   const [updateNote] = useMutation(UPDATE_NOTE);
 
   if (loading) return <div>Fetching note</div>;
-  if (error) return <div>Error fetching note</div>;
+  if (error) return <div>Error fetching note: {error}</div>;
 
   // set the  result gotten from rhe GraphQL server into the note variable.
-  const note:any = path(['note'], data);
-
+  const note = data.note;
   return (
     <div className="container m-t-20">
       <h1 className="page-title">Edit Note</h1>
@@ -49,7 +50,6 @@ export const EditNote = ({ match }) => {
         <form
           onSubmit={(e) => {
             // Stop the form from submitting
-            e.preventDefault();
 
             // set the title of the note to the title in the state, if not's available set to the original title gotten from the GraphQL server
             // set the content of the note to the content in the state, if not's available set to the original content gotten from the GraphQL server
@@ -60,8 +60,9 @@ export const EditNote = ({ match }) => {
                 text: text ? text : note.text,
               },
             });
+            e.preventDefault();
 
-            notify.show('Note was edited successfully', 'success');
+            // notify.show('Note was edited successfully', 'success');
           }}
         >
           <div className="field">
@@ -87,18 +88,18 @@ export const EditNote = ({ match }) => {
             border="default"
           >
             <Pane flex={1} alignItems="center" display="flex">
-            <Label paddingRight="16px">Note </Label>
+              <Label paddingRight="16px">Note </Label>
               <Textarea
                 id="textarea-note"
                 name="content"
                 defaultValue={note.text}
-                onChange={(e) => setContent(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 placeholder="Note text ..."
                 required
               />
             </Pane>
             <Pane>
-              <Button is="a" marginLeft="10px">
+              <Button type="submit" marginLeft="10px">
                 Submit
               </Button>
             </Pane>

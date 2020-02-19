@@ -34,6 +34,7 @@ const DELETE_NOTE_QUERY = gql`
 export const NotesList: any = () => {
   const { loading, error, data } = useQuery(GET_NOTES);
   const [deleteNote] = useMutation(DELETE_NOTE_QUERY, {
+
     update(cache, { data: { deleteNote } }) {
       const { notes } = cache.readQuery({ query: GET_NOTES });
       const newNotes = notes.filter((note) => note._id !== deleteNote._id);
@@ -45,7 +46,12 @@ export const NotesList: any = () => {
     },
   });
 
-  if (loading) return <Spinner />;
+  if (loading)
+    return (
+      <Pane marginX="auto" marginY="auto">
+        <Spinner />
+      </Pane>
+    );
   if (error) return `Error! ${error.message}`;
 
   return (
@@ -109,9 +115,7 @@ export const NotesList: any = () => {
                               intent="danger"
                               onSelect={(e) => {
                                 e.preventDefault();
-                                console.log('Delete');
-                                // deleteNote({ variables: { _id: note._id } });
-                                //   notify.show('Note was deleted successfully', 'success');
+                                deleteNote({ variables: { _id: note._id } });
                               }}
                               height={20}
                             >
@@ -121,7 +125,7 @@ export const NotesList: any = () => {
                         </Menu>
                       }
                     >
-                    <Button height={20} marginRight={8}>
+                      <Button height={20} marginRight={8}>
                         ...
                       </Button>
                     </Popover>
