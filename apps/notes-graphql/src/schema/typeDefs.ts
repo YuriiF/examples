@@ -53,11 +53,19 @@ const typeDefs = gql`
     me: User
   }
 
+  input NoteInput {
+    text: String!
+  }
+
+  input NoteUpdateInput {
+    text: String
+  }
+
   # Mutation type definition
   type Mutation {
-    createNote(launchIds: [ID]!): NoteUpdateResponse!
-    deleteNote(launchId: ID!): NoteUpdateResponse!
-    updateNote(launchId: ID!): NoteUpdateResponse!
+    createNote(input: NoteInput): Note
+    deleteNote(_id: ID!, input: NoteUpdateInput): Note
+    updateNote(_id: ID!, text: String): Note
     login(email: String): String # This is login token
   }
 
