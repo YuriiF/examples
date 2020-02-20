@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
@@ -12,6 +12,9 @@ import {
   Menu,
   Position,
 } from 'evergreen-ui';
+
+import { EditNote } from '../../containers/EditNote/EditNote';
+import { match } from 'ramda';
 
 const GET_NOTES = gql`
   query getNotes {
@@ -32,9 +35,11 @@ const DELETE_NOTE_QUERY = gql`
 `;
 
 export const NotesList: any = () => {
+  const [isShown, setShown] = useState(false);
+  const [noteId, setNoteId] = useState(null);
   const { loading, error, data } = useQuery(GET_NOTES);
-  const [deleteNote] = useMutation(DELETE_NOTE_QUERY, {
 
+  const [deleteNote] = useMutation(DELETE_NOTE_QUERY, {
     update(cache, { data: { deleteNote } }) {
       const { notes } = cache.readQuery({ query: GET_NOTES });
       const newNotes = notes.filter((note) => note._id !== deleteNote._id);
@@ -48,11 +53,19 @@ export const NotesList: any = () => {
 
   if (loading)
     return (
-      <Pane marginX="auto" marginY="auto">
+      <Pane
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+        flexDirection="column"
+      >
         <Spinner />
       </Pane>
     );
-  if (error) return `Error! ${error.message}`;
+
+  if (error) {
+    return `Error! ${error.message}`;
+  }
 
   return (
     <div className="container m-t-20">
@@ -83,7 +96,6 @@ export const NotesList: any = () => {
                   >
                     {note.text}
                   </Text>
-                  {/* <Text size={300}>{note.content}</Text> */}
 
                   <Pane
                     flex="1 1 auto"
@@ -100,12 +112,13 @@ export const NotesList: any = () => {
                           <Menu.Group>
                             <Menu.Item
                               icon="edit"
-                              to={`notes/${note._id}`}
-                              is={Link}
-                              textDecoration="none"
                               height={20}
+                              onSelect={() => {
+                                setShown(true);
+                                setNoteId(note._id);
+                              }}
                             >
-                              Edit...
+                              Edit ...
                             </Menu.Item>
                           </Menu.Group>
                           <Menu.Divider />
@@ -133,6 +146,9 @@ export const NotesList: any = () => {
                 </Pane>
               </div>
             ))}
+            {!loading && noteId ? (
+              <EditNote isShown={isShown} setShown={setShown} id={noteId} />
+            ) : null}
           </Pane>
         </div>
       </div>

@@ -1,6 +1,6 @@
-{"text":"new text","_id":"10TcAPYlrYkRlQSH"}
+{"text":"Edited","_id":"10TcAPYlrYkRlQSH"}
 {"text":"hello","createdAt":1582096463619,"_id":"52cCpbywzGcshBwC"}
-{"text":"TEsting the query against the","createdAt":1582097012516,"_id":"59TB8sO0OECwe2O2"}
+{"text":"lllll","_id":"59TB8sO0OECwe2O2"}
 {"text":"hello there","createdAt":1582099758208,"_id":"5Al3AhpVic318BYA"}
 {"text":"dfasdfas","createdAt":1582102888561,"_id":"5VSNTxR2u3uwaGAu"}
 {"text":"Another note here","createdAt":1582094579861,"_id":"7odK3UPpOgqVv7Eu"}
@@ -56,5 +56,19 @@
 {"text":"fadfasd","createdAt":1582104772137,"_id":"oDGciAipPUcDvxA1"}
 {"text":"sfadfa","createdAt":1582103051057,"_id":"p7SizwS9kvQXcQEQ"}
 {"text":"lllll","_id":"59TB8sO0OECwe2O2"}
-{"text":"Edited","_id":"10TcAPYlrYkRlQSH"}
-{"text":"Edited","_id":"10TcAPYlrYkRlQSH"}
+{"text":"Change this note","_id":"52cCpbywzGcshBwC"}
+{"text":"My note","_id":"5VSNTxR2u3uwaGAu"}
+{"text":"This is edit note","_id":"59TB8sO0OECwe2O2"}
+{"text":"This is edit note","_id":"59TB8sO0OECwe2O2"}
+{"text":"First note edited","_id":"10TcAPYlrYkRlQSH"}
+{"text":"This is edit note","_id":"59TB8sO0OECwe2O2"}
+{"text":"Change this note","_id":"52cCpbywzGcshBwC"}
+{"text":"This is edit note","_id":"59TB8sO0OECwe2O2"}
+{"text":"This is edit note","_id":"59TB8sO0OECwe2O2"}
+{"text":"This is edit noteSAW","_id":"59TB8sO0OECwe2O2"}
+{"text":"This is edit noteSAW","_id":"59TB8sO0OECwe2O2"}
+{"text":"This is edit note","_id":"59TB8sO0OECwe2O2"}
+{"$$deleted":true,"_id":"59TB8sO0OECwe2O2"}
+{"text":"hello there - edited","_id":"5Al3AhpVic318BYA"}
+{"text":"Edited","_id":"7s9CdyZo4kR2u7C8"}
+{"text":"hello there - editeddsdafa","_id":"5Al3AhpVic318BYA"}
