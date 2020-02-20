@@ -42,15 +42,34 @@ every file is in TypeScript.
 4. Open terminal and run bellow command for notes-api server
 
 ```sh
-  yarn start notes-api
+  yarn start:notes-api
 
   # or in case npm
 
-  npm run start notes-api
+  npm run start:notes-api
+```
+
+#### Run notes Apollo GraphQL server
+5. Open another terminal and run bellow command for the GraphQL server
+
+GraphQL was implemented to demonstrade how we can, use Apollo `RESTDatasources`
+to handle REST enpoints and wrap every call to REST API into GraphGL.
+
+It's very handy becuase Apollo will cache results from REST API, handle Optimistic
+updates, refetch, pagination and many more. And we still have full control over
+cache or our calls to REST. Another goodness is that we can iteratively change our
+old REST to GraphQL API, or just consume some old REST that we cant't migrate to GraphQL.
+
+```sh
+  yarn start notes-graphql
+
+  # or in case npm
+
+  npm run start notes-graphql
 ```
 
 #### Run notes React clien application
-5. Open another terminal and run bellow command for the client
+6. Open another terminal and run bellow command for the client
 
 ```sh
   yarn start notes
