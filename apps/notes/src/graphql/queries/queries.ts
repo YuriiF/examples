@@ -9,4 +9,13 @@ const GET_NOTE = gql`
   }
 `;
 
-export { GET_NOTE };
+const GET_NOTES = gql`
+  query getNotes {
+    notes {
+      _id
+      text
+    }
+  }
+`;
+
+export { GET_NOTE, GET_NOTES };

@@ -1,33 +1,18 @@
 import React, { useState, Fragment } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
-import { Pane, Heading, Paragraph, Card, Textarea, Button } from 'evergreen-ui';
+import { Pane, Heading, Card, Textarea, Button, toaster, Position } from 'evergreen-ui';
+
+/** Custom Imports */
 import { StyledForm } from '../../containers/EditNote/EditNote';
-
-const CREATE_NOTE = gql`
-  mutation createNote($text: String!) {
-    createNote(input: { text: $text }) {
-      text
-      _id
-    }
-  }
-`;
-
-const GET_NOTES = gql`
-  query getNotes {
-    notes {
-      _id
-      text
-    }
-  }
-`;
+import { GET_NOTES } from '@notes/graphql/queries';
+import { CREATE_NOTE } from '@notes/graphql/mutations';
 
 export const CreateNote = withRouter(({ history }) => {
   const { loading, error, data } = useQuery(GET_NOTES);
   const [text, setText] = useState('');
 
-  const [createNote] = useMutation(CREATE_NOTE, {
+  const [createNote, { error: mutationError }] = useMutation(CREATE_NOTE, {
     update(cache, { data: { createNote } }) {
       const response: any = cache.readQuery({ query: GET_NOTES })
         ? cache.readQuery({ query: GET_NOTES })
@@ -52,6 +37,19 @@ export const CreateNote = withRouter(({ history }) => {
         text,
       },
     });
+
+    if (mutationError) {
+      toaster.danger('Create Note oparation failed', {
+        description: `Refresh the page and try again.`,
+        duration: 3,
+      });
+    } else {
+      toaster.success('Note created', {
+        description: `Your note was saved successfully.`,
+        duration: 3,
+      });
+    }
+
     history.push('/');
   };
 
@@ -89,9 +87,18 @@ export const CreateNote = withRouter(({ history }) => {
                   required
                 />
               </Pane>
-              <Pane>
-                <Button type="submit" marginLeft="10px">
+              <Pane display="flex" flexDirection="column">
+                <Button type="submit" marginLeft="10px" intent="success">
                   Submit
+                </Button>
+                <Button
+                  is={Link}
+                  to="/"
+                  intent="warning"
+                  marginLeft="10px"
+                  marginTop="8px"
+                >
+                  Cancel
                 </Button>
               </Pane>
             </Pane>

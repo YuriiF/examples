@@ -1,39 +1,19 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import gql from 'graphql-tag';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import {
   Spinner,
   Pane,
   Text,
-  Heading,
-  Button,
   Popover,
   Menu,
   Position,
   IconButton,
 } from 'evergreen-ui';
 
+/** Custom Imports */
 import { EditNote } from '../../containers/EditNote/EditNote';
-import { match } from 'ramda';
-
-const GET_NOTES = gql`
-  query getNotes {
-    notes {
-      _id
-      text
-    }
-  }
-`;
-
-const DELETE_NOTE_QUERY = gql`
-  mutation deleteNote($_id: ID!) {
-    deleteNote(_id: $_id) {
-      _id
-      text
-    }
-  }
-`;
+import { GET_NOTES } from './../../graphql/queries/queries';
+import { DELETE_NOTE_QUERY } from './../../graphql/mutations/mutations';
 
 export const NotesList: any = () => {
   const [isShown, setShown] = useState(false);

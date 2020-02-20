@@ -66,10 +66,12 @@ export const EditNote = ({ isShown, setShown, id }: EditNoteProps) => {
     if (mutationError) {
       toaster.danger('Edit note oparation failed', {
         description: 'Refresh the page and try again.',
+        duration: 3,
       });
     } else {
       toaster.success('Note edited successfully', {
         description: 'Your note was updated and save successfully.',
+        duration: 3,
       });
     }
 
