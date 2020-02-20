@@ -11,6 +11,7 @@ import {
   Popover,
   Menu,
   Position,
+  IconButton,
 } from 'evergreen-ui';
 
 import { EditNote } from '../../containers/EditNote/EditNote';
@@ -102,7 +103,7 @@ export const NotesList: any = () => {
                     display="flex"
                     flexDirection="column"
                     alignItems="flex-end"
-                    paddingBottom="10px"
+                    paddingBottom="8px"
                     justifyContent="flex-end"
                     position="relative"
                     width="100%"
@@ -120,7 +121,7 @@ export const NotesList: any = () => {
                                 setNoteId(note._id);
                               }}
                             >
-                              Edit ...
+                              Edit
                             </Menu.Item>
                           </Menu.Group>
                           <Menu.Divider />
@@ -134,19 +135,18 @@ export const NotesList: any = () => {
                               }}
                               height={20}
                             >
-                              Delete...
+                              Delete
                             </Menu.Item>
                           </Menu.Group>
                         </Menu>
                       }
                     >
-                      <Button
-                        height={20}
-                        marginRight={8}
+                      <IconButton
+                        marginRight={10}
                         appearance="minimal"
-                      >
-                        ...
-                      </Button>
+                        icon="more"
+                        height={16}
+                      />
                     </Popover>
                   </Pane>
                 </Pane>
