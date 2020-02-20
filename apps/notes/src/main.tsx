@@ -11,9 +11,12 @@ import { ApolloClient } from 'apollo-client';
 import { InMemoryCache, NormalizedCacheObject } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
+import { I18nProvider } from '@lingui/react';
+import catalogCS from './locales/cs/messages';
+import catalogEN from './locales/en/messages';
 
 /** Custom imports */
-import { App } from '@bsc/notes/app';
+import { App, LocaleToggle } from '@bsc/notes/app';
 
 const cache = new InMemoryCache();
 
@@ -27,13 +30,22 @@ const client: ApolloClient<NormalizedCacheObject> = new ApolloClient({
   link,
 });
 
+/** I18n catalogs */
+const catalogs = {
+  cs: catalogCS,
+  en: catalogEN,
+};
+
 const MOUNT_NODE = document.getElementById('root') as HTMLElement;
 
 const load = (messages: any, Component = App) => {
   render(
     <BrowserRouter>
       <ApolloProvider client={client}>
-        <Component />
+        <LocaleToggle />
+        <I18nProvider language="en" catalogs={catalogs}>
+          <Component />
+        </I18nProvider>
       </ApolloProvider>
     </BrowserRouter>,
     MOUNT_NODE,

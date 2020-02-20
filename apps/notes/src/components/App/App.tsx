@@ -5,11 +5,12 @@
  * This component is the skeleton around the actual pages, and should only
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
 import { Switch, Route } from 'react-router-dom';
-import { Pane, Heading, Button, Link } from 'evergreen-ui';
+import { Pane, Heading, Button, Link, SegmentedControl } from 'evergreen-ui';
+import { Trans } from '@lingui/react';
 
 /** Custom imports */
 import { NotFoundPage, GlobalStyles } from '@bsc/notes/components';
@@ -28,6 +29,24 @@ const StyledLink = styled(Link)`
     box-shadow: none;
   }
 `;
+
+export const LocaleToggle = () => {
+  const [language, setLanguage] = useState('en');
+  const options = [
+    { label: 'English', value: 'en' },
+    { label: 'Czech', value: 'cs' },
+  ];
+  const defaultLanguage = 'en';
+
+  return (
+    <SegmentedControl
+      width={240}
+      options={options}
+      value={language}
+      onChange={(val) => setLanguage(''+val)}
+    />
+  );
+};
 
 export const App = () => {
   return (
@@ -55,12 +74,10 @@ export const App = () => {
           elevation={1}
         >
           <Pane flex={1} alignItems="center" display="flex">
-            <StyledLink
-              href="/"
-              textDecoration="none"
-              boxShadow="none"
-            >
-              <Heading size={600}>BSC Note Example Application</Heading>
+            <StyledLink href="/" textDecoration="none" boxShadow="none">
+              <Heading size={600}>
+                <Trans>BSC Note Example Application</Trans>
+              </Heading>
             </StyledLink>
           </Pane>
           <Pane>

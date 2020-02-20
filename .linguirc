@@ -1,0 +1,7 @@
+{
+  "localeDir": "apps/notes/src/locales",
+  "srcPathDirs": [
+    "apps/notes/src/"
+  ],
+  "format": "lingui"
+}

@@ -1,0 +1,11 @@
+{
+  "BSC Note Example Application": {
+    "translation": "",
+    "origin": [
+      [
+        "apps/notes/src/components/App/App.tsx",
+        40
+      ]
+    ]
+  }
+}
