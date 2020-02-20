@@ -80,7 +80,7 @@ export const NotesList: any = () => {
                   elevation={1}
                   float="left"
                   width={200}
-                  height={120}
+                  minHeight={120}
                   margin={24}
                   display="flex"
                   justifyContent="center"
@@ -100,10 +100,12 @@ export const NotesList: any = () => {
                   <Pane
                     flex="1 1 auto"
                     display="flex"
-                    flexDirection="row"
+                    flexDirection="column"
                     alignItems="flex-end"
                     paddingBottom="10px"
-                    justifyContent="left"
+                    justifyContent="flex-end"
+                    position="relative"
+                    width="100%"
                   >
                     <Popover
                       position={Position.BOTTOM}
@@ -138,7 +140,11 @@ export const NotesList: any = () => {
                         </Menu>
                       }
                     >
-                      <Button height={20} marginRight={8}>
+                      <Button
+                        height={20}
+                        marginRight={8}
+                        appearance="minimal"
+                      >
                         ...
                       </Button>
                     </Popover>

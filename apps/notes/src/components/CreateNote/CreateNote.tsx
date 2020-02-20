@@ -56,7 +56,7 @@ export const CreateNote = withRouter(({ history }) => {
 
   return (
     <Fragment>
-      <Pane zIndex={1} flexShrink={0} elevation={1} backgroundColor="white">
+      <Pane zIndex={1} flexShrink={0} elevation={0} backgroundColor="white">
         <Pane padding={16}>
           <Heading size={600}>Create Note</Heading>
         </Pane>
