@@ -9,6 +9,7 @@ const CREATE_NOTE = gql`
   mutation createNote($text: String!) {
     createNote(input: { text: $text }) {
       text
+      _id
     }
   }
 `;
