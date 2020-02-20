@@ -77,8 +77,6 @@ export const EditNote = ({ isShown, setShown, id }: EditNoteProps) => {
     e.preventDefault();
   };
 
-  const handleClose = () => setShown(false);
-
   return (
     <Fragment>
       <SideSheet

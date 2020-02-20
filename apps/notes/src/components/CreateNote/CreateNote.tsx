@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { useMutation, useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import pathOr from 'ramda/src/pathOr';
+import { Pane, Heading, Paragraph, Card, Textarea, Button } from 'evergreen-ui';
+import { StyledForm } from '../../containers/EditNote/EditNote';
 
 const CREATE_NOTE = gql`
   mutation createNote($text: String!) {
@@ -42,44 +43,61 @@ export const CreateNote = withRouter(({ history }) => {
     },
   });
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    createNote({
+      variables: {
+        text,
+      },
+    });
+    history.push('/');
+  };
+
   return (
-    <div className="container m-t-20">
-      <h1 className="page-text">New Note</h1>
-
-      <div className="newnote-page m-t-20">
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            createNote({
-              variables: {
-                text,
-              },
-            });
-            history.push('/');
-          }}
+    <Fragment>
+      <Pane zIndex={1} flexShrink={0} elevation={1} backgroundColor="white">
+        <Pane padding={16}>
+          <Heading size={600}>Create Note</Heading>
+        </Pane>
+      </Pane>
+      <Pane flex="1" flexDirection="column" background="tint1" padding={16}>
+        <Card
+          backgroundColor="white"
+          elevation={0}
+          height={240}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
         >
-          <div className="field">
-            <label className="label">Note Text</label>
-            <div className="control">
-              <input
-                className="input"
-                name="text"
-                type="text"
-                placeholder="Note Title"
-                value={text}
-                onChange={(e) => setText(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <div className="control">
-              <button className="button is-link">Submit</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </div>
+          <StyledForm onSubmit={(e) => handleFormSubmit(e)}>
+            <Pane
+              display="flex"
+              padding={16}
+              background="tint2"
+              borderRadius={3}
+              border="default"
+            >
+              <Pane flex={1} alignItems="center" display="flex">
+                <Textarea
+                  id="textarea-note"
+                  name="content"
+                  defaultValue={text}
+                  onChange={(e) => setText(e.target.value)}
+                  placeholder="Note text ..."
+                  required
+                />
+              </Pane>
+              <Pane>
+                <Button type="submit" marginLeft="10px">
+                  Submit
+                </Button>
+              </Pane>
+            </Pane>
+          </StyledForm>
+        </Card>
+      </Pane>
+    </Fragment>
   );
 });
 
