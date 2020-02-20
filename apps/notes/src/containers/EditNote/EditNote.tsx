@@ -75,6 +75,8 @@ export const EditNote = ({ isShown, setShown, id }: EditNoteProps) => {
       });
     }
 
+    setShown(false);
+
     /** Prevent Form to be sent */
     e.preventDefault();
   };
@@ -129,9 +131,18 @@ export const EditNote = ({ isShown, setShown, id }: EditNoteProps) => {
                     required
                   />
                 </Pane>
-                <Pane>
+                <Pane display="flex" flexDirection="column">
                   <Button type="submit" marginLeft="10px">
                     Submit
+                  </Button>
+                  <Button
+                    type="button"
+                    marginLeft="10px"
+                    marginTop="8px"
+                    intent="warning"
+                    onClick={() => setShown(false)}
+                  >
+                    Cancel
                   </Button>
                 </Pane>
               </Pane>

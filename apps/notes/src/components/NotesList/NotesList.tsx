@@ -89,7 +89,7 @@ export const NotesList: any = () => {
                     width="100%"
                   >
                     <Popover
-                      position={Position.BOTTOM}
+                      position={Position.BOTTOM_LEFT}
                       content={
                         <Menu>
                           <Menu.Group>

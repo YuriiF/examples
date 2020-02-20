@@ -8,14 +8,11 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
-import { Switch, Route, Link } from 'react-router-dom';
-import { Pane, Heading, Button } from 'evergreen-ui';
+import { Switch, Route } from 'react-router-dom';
+import { Pane, Heading, Button, Link } from 'evergreen-ui';
 
 /** Custom imports */
-import {
-  NotFoundPage,
-  GlobalStyles,
-} from '@bsc/notes/components';
+import { NotFoundPage, GlobalStyles } from '@bsc/notes/components';
 
 import { NotesList } from '../NotesList/NotesList';
 import { CreateNote } from '../CreateNote/CreateNote';
@@ -24,6 +21,12 @@ const Header = styled(Pane)`
   position: fixed;
   left: 0;
   right: 0;
+`;
+const StyledLink = styled(Link)`
+  :focus {
+    outline: none;
+    box-shadow: none;
+  }
 `;
 
 export const App = () => {
@@ -52,7 +55,13 @@ export const App = () => {
           elevation={1}
         >
           <Pane flex={1} alignItems="center" display="flex">
-            <Heading size={600}>BSC Note Example Application</Heading>
+            <StyledLink
+              href="/"
+              textDecoration="none"
+              boxShadow="none"
+            >
+              <Heading size={600}>BSC Note Example Application</Heading>
+            </StyledLink>
           </Pane>
           <Pane>
             <Button is={Link} to="/create-note">

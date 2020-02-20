@@ -20,6 +20,10 @@ const GlobalStyles = () => {
         [['html', 'body']]: {
           height: '100%',
         },
+        [`[role=dialog]`]: {
+          borderRadius: '0 !important',
+          minWidth: '120px',
+        },
         body: {
           margin: 0,
           padding: 0,
