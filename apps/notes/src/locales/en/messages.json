@@ -4,7 +4,18 @@
     "origin": [
       [
         "apps/notes/src/components/App/App.tsx",
-        40
+        48
+      ]
+    ],
+    "obsolete": true
+  },
+  "msg.header": {
+    "translation": "BSC Note Example Application",
+    "defaults": "BSC Note Example Application",
+    "origin": [
+      [
+        "apps/notes/src/components/App/App.tsx",
+        48
       ]
     ]
   }

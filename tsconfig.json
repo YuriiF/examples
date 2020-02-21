@@ -43,6 +43,7 @@
     "node_modules",
     "tmp",
     "dist",
-    "node_modules/react-hot-loader"
+    "node_modules/react-hot-loader",
+    "_build"
   ]
 }

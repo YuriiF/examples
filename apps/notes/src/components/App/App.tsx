@@ -8,8 +8,15 @@
 import React, { Fragment, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from '@emotion/styled';
-import { Switch, Route } from 'react-router-dom';
-import { Pane, Heading, Button, Link, SegmentedControl } from 'evergreen-ui';
+import { Switch, Route, Link as RouterLink } from 'react-router-dom';
+import {
+  Pane,
+  Heading,
+  Button,
+  SegmentedControl,
+  Link,
+  SelectMenu,
+} from 'evergreen-ui';
 import { Trans } from '@lingui/react';
 
 /** Custom imports */
@@ -30,25 +37,39 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export const LocaleToggle = () => {
-  const [language, setLanguage] = useState('en');
+export const LocaleToggle = ({ setLanguage, language }) => {
   const options = [
-    { label: 'English', value: 'en' },
-    { label: 'Czech', value: 'cs' },
+    {
+      label: 'En',
+      value: 'en',
+      icon: 'https://cdn.countryflags.com/thumbs/united-kingdom/flag-400.png',
+    },
+    {
+      label: 'Cz',
+      value: 'cs',
+      icon: 'https://cdn.countryflags.com/thumbs/czech-republic/flag-400.png',
+    },
   ];
-  const defaultLanguage = 'en';
 
   return (
-    <SegmentedControl
-      width={240}
-      options={options}
-      value={language}
-      onChange={(val) => setLanguage(''+val)}
-    />
+    <Fragment>
+      <SelectMenu
+        hasFilter={false}
+        title="Choose your language"
+        options={options}
+        selected={language}
+        onSelect={(locale) => setLanguage(locale.value)}
+      >
+        <Button>{language}</Button>
+      </SelectMenu>
+    </Fragment>
   );
 };
 
-export const App = () => {
+export const App = ({ i18n }) => {
+  console.log('[TLOG]: App -> i18n', i18n);
+  const [language, setLanguage] = useState('en');
+  i18n.activate(language);
   return (
     <Fragment>
       <Pane
@@ -76,12 +97,13 @@ export const App = () => {
           <Pane flex={1} alignItems="center" display="flex">
             <StyledLink href="/" textDecoration="none" boxShadow="none">
               <Heading size={600}>
-                <Trans>BSC Note Example Application</Trans>
+                <Trans id="msg.header">BSC Note Example Application</Trans>
               </Heading>
             </StyledLink>
           </Pane>
           <Pane>
-            <Button is={Link} to="/create-note">
+            <LocaleToggle language={language} setLanguage={setLanguage} />
+            <Button is={RouterLink} to="/create-note">
               Create New Note
             </Button>
           </Pane>
