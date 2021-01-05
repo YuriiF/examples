@@ -120,7 +120,7 @@
     "@types/webpack-env": "^1.15.1",
     "add": "^2.0.6",
     "apollo": "^2.22.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "babel-core": "^7.0.0-bridge.0",
     "cypress": "^3.8.2",
     "dotenv": "6.2.0",
